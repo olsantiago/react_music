@@ -1,0 +1,419 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,700&display=swap');
+
+
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+*{
+  box-sizing: border-box;
+}
+
+
+body {
+  background: #333;
+  color: #F0EDEE;
+  font-family: 'Noto Sans', sans-serif;
+
+}
+
+#root {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+}
+
+.App {
+  border-radius: 5px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  width: 380px;
+  height: 80%;
+  position:relative;
+
+}
+
+@media only screen and (max-width: 800px) {
+  .App{
+    width:100%;
+    height:100%
+  }
+}
+
+.App .album{
+  height: 50%;
+  width:100%;
+  position: absolute;
+  top:10%;
+  left:0;
+  z-index: 1;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background: linear-gradient(#000)
+}
+.App .player {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  position: relative;
+  background:#181818;
+}
+
+
+.App .player .Controls {
+  position: absolute;
+  bottom: 15%;
+  left: 0;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  box-sizing: border-box;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  padding: 20px 0;
+  -webkit-box-align: flex-end;
+      -ms-flex-align: flex-end;
+          align-items: flex-end;
+
+}
+.App .player .Controls i:hover{
+	cursor:pointer;
+}
+.App .player .Controls .fa-play,
+.App .player .Controls .fa-pause {
+  -webkit-transform: scale(2);
+          transform: scale(2);
+}
+
+
+.Track_toggle{
+  position: absolute;
+  top:2%;
+  right:2%;
+  width:50px;
+  height:50px;
+  z-index:3;
+  -webkit-appearance: none;
+  color:#fff;
+  border: none;
+  border-radius: 2px;
+  padding:2%;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: transparent;
+  outline: none;
+
+}
+
+.ripple {
+  background-position: center;
+  transition: background 0.8s;
+}
+.ripple:hover {
+  background: #bcbcbc50 radial-gradient(circle, transparent 1%, #bcbcbc50 1%) center/15000%;
+}
+.ripple:active {
+  background-color: #bcbcbc50;
+  background-size: 100%;
+  transition: background 0s;
+}
+
+
+.App .TrackList {
+  width: 100%;
+  height: 100%;
+  bottom:0;
+  background: #212121;
+  overflow-y: auto;
+  position:absolute;
+  z-index:2;
+  transition: all 0.3s ease-in-out;
+  transform:translateY(100%);
+}
+
+.App .TrackList.active{
+  transform:translateY(0);
+}
+
+.App .TrackList li:first-child{
+  margin-top:20%;
+}
+.App .TrackList li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 10px;
+  box-sizing: border-box;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 11px;
+  text-transform: uppercase;
+  font-weight: 300;
+}
+.App .TrackList li:hover, .App .TrackList li.selected {
+  background: #000000;
+  cursor: pointer;
+  color: #ef0000;
+}
+.App .TrackList li:hover .duration {
+  opacity: 1;
+}
+.App .TrackList li .title {
+  margin-left: 10px;
+  font-weight: 500;
+  letter-spacing: .12em;
+}
+.App .TrackList li .duration {
+  margin-left: auto;
+  opacity: .25;
+}
+
+
+
+#volume{
+  display:flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom:5%;
+  z-index: 1;
+}
+
+#change_vol {
+  height: 20px;
+  -webkit-appearance: none;
+  margin: 10px;
+  background: transparent;
+}
+#change_vol:focus {
+  outline: none;
+}
+#change_vol::-webkit-slider-runnable-track {
+  height: 4px;
+  cursor: pointer;
+  animation: 0.2s;
+  box-shadow: 1px 1px 1px #000000;
+  background: #a8a8a880;
+  border-radius: 3px;
+  border: 0px solid #010101;
+}
+#change_vol::-webkit-slider-thumb {
+  box-shadow: 1px 1px 1px #000031;
+  border: 1px solid #00001E;
+  height: 12px;
+  width: 12px;
+  border-radius: 15px;
+  background: #FFFFFF;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -4.5px;
+}
+#change_vol:focus::-webkit-slider-runnable-track {
+  background: #a8a8a880;
+}
+#change_vol::-moz-range-track {
+  height: 4px;
+  cursor: pointer;
+  animation: 0.2s;
+  box-shadow: 1px 1px 1px #000000;
+  background: #a8a8a880;
+  border-radius: 3px;
+  border: 0px solid #010101;
+}
+#change_vol::-moz-range-thumb {
+  box-shadow: 1px 1px 1px #000031;
+  border: 1px solid #00001E;
+  height: 12px;
+  width: 12px;
+  border-radius: 15px;
+  background: #FFFFFF;
+  cursor: pointer;
+}
+#change_vol::-ms-track {
+  height: 4px;
+  cursor: pointer;
+  animation: 0.2s;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+#change_vol::-ms-fill-lower {
+  background: #a8a8a880;
+  border: 0px solid #010101;
+  border-radius: 6px;
+  box-shadow: 1px 1px 1px #000000;
+}
+#change_vol::-ms-fill-upper {
+  background: #a8a8a880;
+  border: 0px solid #010101;
+  border-radius: 6px;
+  box-shadow: 1px 1px 1px #000000;
+}
+#change_vol::-ms-thumb {
+  margin-top: 1px;
+  box-shadow: 1px 1px 1px #000031;
+  border: 1px solid #00001E;
+  height: 12px;
+  width: 12px;
+  border-radius: 15px;
+  background: #FFFFFF;
+  cursor: pointer;
+}
+#change_vol:focus::-ms-fill-lower {
+  background: #a8a8a880;
+}
+#change_vol:focus::-ms-fill-upper {
+  background: #a8a8a880;
+}
+
+
+
+
+.track_set{
+  display:flex;
+  justify-content:center;
+  flex-wrap: wrap;
+  width:100%;
+  position: absolute;
+  height:15%;
+  bottom:20%;
+}
+
+.track_set #times{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 20px;
+  position: relative;
+  bottom: 0;
+  margin:2% 0;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+}
+
+#progress { 
+  margin: auto;
+  position: absolute;
+  z-index: 1;
+  -webkit-appearance: none;
+  overflow: hidden;
+  height: 3px;
+  width: 90%;
+  cursor: pointer;
+  border-radius: 15%;
+  outline: none;
+  background: transparent;
+}
+
+#progress::-webkit-slider-runnable-track {
+  background: rgba(241, 241, 241, 0.418);
+}
+
+
+#progress::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 5px;
+  height: 10px;
+  background: #fff;
+  box-shadow: -100vw 0 0 100vw #ef0000;
+}
+
+#progress::-moz-range-track {
+  height: 40px;
+  background: #ddd;
+}
+
+#progress::-moz-range-thumb {
+  background: #fff;
+  height: 10px;
+  width: 10px;
+  border: 3px solid #999;
+  border-radius: 0 !important;
+  box-shadow: -100vw 0 0 100vw #ef0000;
+  box-sizing: border-box;
+
+
+}
+
+#progress::-ms-fill-lower { 
+  background: #ef0000;
+}
+
+#progress::-ms-thumb { 
+  background: #fff;
+  border: 2px solid #999;
+  height: 40px;
+  width: 20px;
+  box-sizing: border-box;
+}
+
+#progress::-ms-ticks-after { 
+  display: none; 
+}
+
+#progress::-ms-ticks-before { 
+  display: none; 
+}
+
+#progress::-ms-track { 
+  background: #ddd;
+  color: transparent;
+  height: 40px;
+  border: none;
+}
+
+#progress::-ms-tooltip { 
+  display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
