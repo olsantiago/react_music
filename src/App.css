@@ -84,9 +84,15 @@ body {
   top:10%;
   left:0;
   z-index: 1;
+
   background-size: cover!important;
   background-position: center!important;
   background-repeat: no-repeat!important;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
   background: linear-gradient(#000)
 }
 .App .player {

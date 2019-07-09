@@ -51,6 +51,8 @@ class App extends React.Component {
     document.getElementById("current").innerHTML = this.formatTime(x);
     document.getElementById("progress").value = x;
     document.getElementById("cur_title").innerHTML = z.title;
+
+
     if(x > 0){
       this.setState({duration : y});
       document.getElementById("duration").innerHTML = this.formatTime(y);
@@ -131,7 +133,11 @@ class App extends React.Component {
         <div className="album" style={{ backgroundImage: "url(" + this.state.currentTrack.album + ")" }}></div>
         <div className="player"  >
           <Controls onClick={this.handleClick} playing={this.state.playing} />
+
           <audio id="audio" ref={(audio)=>{this.audioElement = audio}} src={"songs/"+this.state.currentTrackIndex+".mp3"} onTimeUpdate={this.setTrack}/>
+
+          <audio id="audio" ref={(audio)=>{this.audioElement = audio}} src={"/songs/"+this.state.currentTrackIndex+".mp3"} onTimeUpdate={this.setTrack}/>
+
           <div id="volume">
           <i class="fas fa-volume-down"></i>
           <input type="range" id="change_vol" onChange={this.change_vol} step="0.05" min="0" max="1" aria-label="volume" ></input>
