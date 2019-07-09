@@ -1,0 +1,13 @@
+{
+  "title":"How To Be A Human Being",
+  "artist":"Glass Animals",
+  "artwork":"http://3.bp.blogspot.com/-uL5E7Yxr97o/VRSpZSq1udI/AAAAAAAAAMc/UzCaqMsvAEw/s1600/A%2BNight%2BAt%2BThe%2BOpera.jpg",
+  "tracks":[
+    {"id":1,"title":"Don't Stop Me Now","duration":"3:29", "album":"https://images-na.ssl-images-amazon.com/images/I/61m6sOAPvrL.jpg"},
+    {"id":2,"title":"Bohemian Rhapsody","duration":"5:54", "album":"http://3.bp.blogspot.com/-uL5E7Yxr97o/VRSpZSq1udI/AAAAAAAAAMc/UzCaqMsvAEw/s1600/A%2BNight%2BAt%2BThe%2BOpera.jpg" },
+    {"id":3,"title":"Radio Ga Ga","duration":"5:48", "album":"http://www.ultimatequeen.co.uk/queen/gallery/singles-3/radio-ga-ga-uksinglescollectionfront.jpg"},
+    {"id":4,"title":"Love of My Life","duration":"3:36", "album":"http://images.45cat.com/queen-love-of-my-life-1979-2.jpg"},
+    {"id":5,"title":"I Want to Break Free","duration":"4:18", "album":"https://img.cdandlp.com/2019/05/imgL/3000349.jpg"},
+    {"id":6,"title":"We Are the Champions","duration":"2:59", "album":"https://images-na.ssl-images-amazon.com/images/I/81PgcGNI2bL._SX355_.jpg"}
+  ]
+}
